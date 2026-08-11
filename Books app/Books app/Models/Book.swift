@@ -11,52 +11,58 @@ struct Book: Identifiable {
     let id = UUID()
     let title: String
     let price: Double
-    let imageName: String
+    let imageURL: String
     let author: String
     let isSpecialOffer: Bool
 }
 
 extension Book {
+    
     static let samples: [Book] = [
         Book(
             title: "The Kite Runner",
             price: 14.99,
-            imageName: "kiteRunner",
+            imageURL: "https://covers.openlibrary.org/b/isbn/9781594631931-L.jpg",
             author: "Khaled Hosseini",
-            isSpecialOffer: false
+            isSpecialOffer: true
         ),
+        
         Book(
             title: "The Subtle Art of Not Giving a F*ck",
             price: 20.99,
-            imageName: "subtleArt",
+            imageURL: "https://covers.openlibrary.org/b/isbn/9780062457714-L.jpg",
             author: "Mark Manson",
             isSpecialOffer: false
         ),
+        
         Book(
             title: "The Art of War",
             price: 14.99,
-            imageName: "artOfWar",
+            imageURL: "https://covers.openlibrary.org/b/isbn/9781590302255-L.jpg",
             author: "Sun Tzu",
             isSpecialOffer: false
         ),
+        
         Book(
             title: "The Trials of Apollo",
             price: 18.99,
-            imageName: "trialsOfApollo",
+            imageURL: "https://covers.openlibrary.org/b/isbn/9781484747204-L.jpg",
             author: "Rick Riordan",
             isSpecialOffer: true
         ),
+        
         Book(
             title: "The Midnight Library",
             price: 18.99,
-            imageName: "midnightLibrary",
+            imageURL: "https://covers.openlibrary.org/b/isbn/9780525559474-L.jpg",
             author: "Matt Haig",
-            isSpecialOffer: false
+            isSpecialOffer: true
         ),
+        
         Book(
             title: "Atomic Habits",
             price: 16.99,
-            imageName: "atomicHabits",
+            imageURL: "https://covers.openlibrary.org/b/isbn/9780735211292-L.jpg",
             author: "James Clear",
             isSpecialOffer: false
         )

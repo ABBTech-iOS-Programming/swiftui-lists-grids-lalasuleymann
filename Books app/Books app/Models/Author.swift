@@ -12,6 +12,7 @@ struct Author: Identifiable {
     let name: String
     let imageURL: String
     let description: String
+    let profession: String
     let category: AuthorCategory
 }
 
@@ -27,43 +28,49 @@ extension Author {
     static let samples: [Author] = [
         Author(
             name: "John Freeman",
-            imageURL: "https://commons.wikimedia.org/wiki/Special:Redirect/file/John%20Freeman%202262123.jpg",
+            imageURL: "https://i.pravatar.cc/300?img=12",
             description: "American writer and literary critic",
-            category: .novelists
+            profession: "Writer",
+            category: .journalists
         ),
         
         Author(
             name: "Adam Dalva",
-            imageURL: "https://commons.wikimedia.org/wiki/Special:Redirect/file/John%20Freeman%202262123.jpg",
+            imageURL: "https://i.pravatar.cc/300?img=11",
             description: "Senior fiction editor and writer",
-            category: .novelists
+            profession: "Writer",
+            category: .journalists
         ),
         
         Author(
             name: "Abraham Verghese",
-            imageURL: "https://commons.wikimedia.org/wiki/Special:Redirect/file/AbrahamVerghese%28c%29BarbiReed.jpg",
+            imageURL: "https://i.pravatar.cc/300?img=13",
             description: "Professor and author of Cutting for Stone",
-            category: .novelists
+            profession: "Writer",
+            category: .journalists
         ),
         
         Author(
             name: "Tess Gunty",
-            imageURL: "https://commons.wikimedia.org/wiki/Special:Redirect/file/AbrahamVerghese%28c%29BarbiReed.jpg",
+            imageURL: "https://i.pravatar.cc/300?img=47",
             description: "Award-winning novelist from South Bend, Indiana",
+            profession: "Novelist",
             category: .novelists
         ),
         
         Author(
             name: "Ann Napolitano",
-            imageURL: "https://commons.wikimedia.org/wiki/Special:Redirect/file/Hernan%20Diaz%2C%20May%202022%20%28cropped%29.jpg",
+            imageURL: "https://i.pravatar.cc/300?img=44",
             description: "Author of Hello Beautiful and Dear Edward",
+            profession: "Novelist",
             category: .novelists
         ),
         
         Author(
             name: "Hernan Diaz",
-            imageURL: "https://commons.wikimedia.org/wiki/Special:Redirect/file/Hernan%20Diaz%2C%20May%202022%20%28cropped%29.jpg",
+            imageURL: "https://i.pravatar.cc/300?img=68",
             description: "Pulitzer Prize-winning novelist",
+            profession: "Novelist",
             category: .novelists
         )
     ]

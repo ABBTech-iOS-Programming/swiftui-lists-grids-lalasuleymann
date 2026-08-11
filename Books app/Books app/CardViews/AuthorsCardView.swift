@@ -11,33 +11,49 @@ import SDWebImageSwiftUI
 struct AuthorsCardView: View {
     
     let author : Author
+    let isMainView : Bool
     
     var image : some View {
         WebImage(url: URL(string: author.imageURL))
             .resizable()
             .scaledToFill()
-            .frame(width: 68,height: 68)
-            .clipShape(RoundedRectangle(cornerRadius: 30))
+            .frame(
+                width: isMainView ? 68 : 102,
+                height: isMainView ? 68 : 102
+            )
+            .clipShape(RoundedRectangle(cornerRadius: isMainView ? 30 : 100))
     }
     
     var info : some View {
         VStack(alignment: .leading){
             Text(author.name)
-                .font(.system(size: 18, weight: .semibold))
+                .font(.system(size: isMainView ? 18 : 16, weight: .semibold))
             
-            Text(author.description)
+            Text(author.profession)
                 .font(.system(size: 14, weight: .medium))
                 .foregroundStyle(.secondaryText)
-//                .lineLimit(.max)
+            
+            if isMainView {
+                Text(author.description)
+                    .font(.system(size: 14, weight: .medium))
+                    .foregroundStyle(.secondaryText)
+            }
         }
     }
             
     
     var body: some View {
         ScrollView {
-            HStack(spacing: 12) {
+            VStack(alignment: .leading, spacing: 12) {
                 image
                 info
+            }
+            
+            if isMainView {
+                HStack(spacing: 12) {
+                    image
+                    info
+                }
             }
         }
     }
@@ -45,5 +61,5 @@ struct AuthorsCardView: View {
 
 #Preview {
     let author = Author.samples.first!
-    AuthorsCardView(author: author)
+    AuthorsCardView(author: author, isMainView: false)
 }

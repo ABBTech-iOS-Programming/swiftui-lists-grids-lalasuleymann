@@ -11,13 +11,16 @@ import SDWebImageSwiftUI
 struct VendorsCardView: View {
     
     let vendor : Vendor
+    let isMainView : Bool
     
     var image : some View {
         WebImage(url: URL(string: vendor.imageURL))
             .resizable()
             .scaledToFit()
-            .frame(maxWidth: .infinity)
-            .frame(height: 101)
+            .frame(
+                width: isMainView ? 101 : 80,
+                height: isMainView ? 101 : 80
+            )
             .background(Color(.systemGroupedBackground))
             .clipShape(RoundedRectangle(cornerRadius: 8))
     }
@@ -40,13 +43,16 @@ struct VendorsCardView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 6){
             image
-            title
-            rating
+                        
+            if isMainView {
+                title
+                rating
+            }
         }
     }
 }
 
 #Preview {
     let vendor = Vendor.samples.first!
-    VendorsCardView(vendor: vendor)
+    VendorsCardView(vendor: vendor, isMainView: false)
 }

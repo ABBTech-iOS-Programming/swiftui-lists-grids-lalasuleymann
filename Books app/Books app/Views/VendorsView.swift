@@ -73,7 +73,7 @@ struct VendorsView: View {
             spacing: 12
         ) {
             ForEach(filteredVendors) { vendor in
-                VendorsCardView(vendor: vendor)
+                VendorsCardView(vendor: vendor, isMainView: true)
             }
         }
         .padding(.horizontal, 16)
