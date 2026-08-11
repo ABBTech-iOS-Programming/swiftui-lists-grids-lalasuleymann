@@ -11,7 +11,7 @@ struct Book: Identifiable {
     let id = UUID()
     let title: String
     let price: Double
-    let imageURL: String
+    let imageName: String
     let author: String
     let isSpecialOffer: Bool
 }
@@ -22,7 +22,7 @@ extension Book {
         Book(
             title: "The Kite Runner",
             price: 14.99,
-            imageURL: "https://covers.openlibrary.org/b/isbn/9781594631931-L.jpg",
+            imageName: "kiterunner",
             author: "Khaled Hosseini",
             isSpecialOffer: true
         ),
@@ -30,7 +30,7 @@ extension Book {
         Book(
             title: "The Subtle Art of Not Giving a F*ck",
             price: 20.99,
-            imageURL: "https://covers.openlibrary.org/b/isbn/9780062457714-L.jpg",
+            imageName: "subtleartofngaf",
             author: "Mark Manson",
             isSpecialOffer: false
         ),
@@ -38,7 +38,7 @@ extension Book {
         Book(
             title: "The Art of War",
             price: 14.99,
-            imageURL: "https://covers.openlibrary.org/b/isbn/9781590302255-L.jpg",
+            imageName: "artofwar",
             author: "Sun Tzu",
             isSpecialOffer: false
         ),
@@ -46,7 +46,7 @@ extension Book {
         Book(
             title: "The Trials of Apollo",
             price: 18.99,
-            imageURL: "https://covers.openlibrary.org/b/isbn/9781484747204-L.jpg",
+            imageName: "trialsofapollo",
             author: "Rick Riordan",
             isSpecialOffer: true
         ),
@@ -54,7 +54,7 @@ extension Book {
         Book(
             title: "The Midnight Library",
             price: 18.99,
-            imageURL: "https://covers.openlibrary.org/b/isbn/9780525559474-L.jpg",
+            imageName: "midnightlibrary",
             author: "Matt Haig",
             isSpecialOffer: true
         ),
@@ -62,7 +62,7 @@ extension Book {
         Book(
             title: "Atomic Habits",
             price: 16.99,
-            imageURL: "https://covers.openlibrary.org/b/isbn/9780735211292-L.jpg",
+            imageName: "atomichabits",
             author: "James Clear",
             isSpecialOffer: false
         )

@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import SDWebImageSwiftUI
 
 struct AuthorsCardView: View {
     
@@ -14,7 +13,7 @@ struct AuthorsCardView: View {
     let isMainView : Bool
     
     var image : some View {
-        WebImage(url: URL(string: author.imageURL))
+        Image($author.wrappedValue.imageName)
             .resizable()
             .scaledToFill()
             .frame(
@@ -25,25 +24,29 @@ struct AuthorsCardView: View {
     }
     
     var info : some View {
-        VStack(alignment: .leading){
+        VStack(alignment: .leading, spacing: 4){
             Text(author.name)
                 .font(.system(size: isMainView ? 18 : 16, weight: .semibold))
+                .lineLimit(1)
+                .truncationMode(.tail)
             
             if !isMainView {
                 Text(author.profession)
                     .font(.system(size: 14, weight: .medium))
                     .foregroundStyle(.secondaryText)
+                    .lineLimit(1)
             }
             
             if isMainView {
                 Text(author.description)
                     .font(.system(size: 14, weight: .medium))
                     .foregroundStyle(.secondaryText)
+                    .lineLimit(2)
             }
         }
+        .frame(maxWidth: isMainView ? .infinity : 120, alignment: .leading)
     }
             
-    
     var body: some View {
         ScrollView {
             if isMainView {

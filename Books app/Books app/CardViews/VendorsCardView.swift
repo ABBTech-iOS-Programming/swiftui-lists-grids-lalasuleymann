@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import SDWebImageSwiftUI
 
 struct VendorsCardView: View {
     
@@ -14,7 +13,7 @@ struct VendorsCardView: View {
     let isMainView : Bool
     
     var image : some View {
-        WebImage(url: URL(string: vendor.imageURL))
+        Image(vendor.imageName)
             .resizable()
             .scaledToFit()
             .frame(
@@ -54,5 +53,5 @@ struct VendorsCardView: View {
 
 #Preview {
     let vendor = Vendor.samples.first!
-    VendorsCardView(vendor: vendor, isMainView: false)
+    VendorsCardView(vendor: vendor, isMainView: true)
 }

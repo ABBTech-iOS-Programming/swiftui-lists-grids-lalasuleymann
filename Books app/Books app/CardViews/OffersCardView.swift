@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import SDWebImageSwiftUI
 
 struct OffersCardView: View {
     
@@ -44,7 +43,7 @@ struct OffersCardView: View {
     }
     
     var image : some View {
-        WebImage(url: URL(string: book.imageURL))
+        Image(book.imageName)
             .resizable()
             .scaledToFit()
             .frame(height: 145)

@@ -46,7 +46,7 @@ struct HomeView: View {
     
     var topOfWeek : some View {
         VStack(alignment: .leading, spacing: 16) {
-            SectionHeaderView(title: "Top of Week", destination: nil)
+            SectionHeaderView(title: "Top of Week", destination: Text("No destination for this section"))
             booksCarousel
         }
     }
@@ -66,7 +66,7 @@ struct HomeView: View {
     
     var bestVendors : some View {
         VStack(alignment: .leading, spacing: 16) {
-            SectionHeaderView(title: "Best Vendors", destination: AnyView(VendorsView(vendors: $vendors)))
+            SectionHeaderView(title: "Best Vendors", destination: VendorsView(vendors: $vendors))
             vendorsCarousel
         }
     }
@@ -86,7 +86,7 @@ struct HomeView: View {
     
     var authorsSection : some View {
         VStack(alignment: .leading, spacing: 16) {
-            SectionHeaderView(title: "Authors", destination: AnyView(AuthorsView(authors: $authors)))
+            SectionHeaderView(title: "Authors", destination: AuthorsView(authors: $authors))
             authorsCarousel
         }
     }

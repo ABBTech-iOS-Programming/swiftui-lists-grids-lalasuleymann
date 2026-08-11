@@ -6,14 +6,13 @@
 //
 
 import SwiftUI
-import SDWebImageSwiftUI
 
 struct BooksView: View {
     
     @Binding var book : Book
     
     var image : some View {
-        WebImage(url: URL(string: book.imageURL))
+        Image(book.imageName)
             .resizable()
             .scaledToFill()
             .frame(width: 128, height: 170)
