@@ -10,57 +10,74 @@ import Foundation
 struct Vendor: Identifiable {
     let id = UUID()
     let name: String
-    let logoName: String
+    let imageURL: String
     let rating: Int
+    let category: VendorCategory
+}
+
+enum VendorCategory: String, CaseIterable {
+    case books = "Books"
+    case poems = "Poems"
+    case specialForYou = "Special for you"
+    case stationery = "Stationery"
 }
 
 extension Vendor {
-    
+
     static let samples: [Vendor] = [
         Vendor(
             name: "Wattpad",
-            logoName: "wattpad",
-            rating: 4
+            imageURL: "https://commons.wikimedia.org/wiki/Special:Redirect/file/Wattpad_logo.png",
+            rating: 3,
+            category: .books
         ),
         Vendor(
             name: "Kuromi",
-            logoName: "kuromi",
-            rating: 5
+            imageURL: "https://seeklogo.com/images/K/kuromi-logo-6F9A2E0E4A-seeklogo.com.png",
+            rating: 5,
+            category: .specialForYou
         ),
         Vendor(
             name: "Crane & Co",
-            logoName: "crane",
-            rating: 4
+            imageURL: "https://commons.wikimedia.org/wiki/Special:Redirect/file/Crane_%26_Co._logo.svg",
+            rating: 4,
+            category: .stationery
         ),
         Vendor(
             name: "GooDay",
-            logoName: "gooday",
-            rating: 4
+            imageURL: "https://commons.wikimedia.org/wiki/Special:Redirect/file/Gooday_logo.svg",
+            rating: 4,
+            category: .books
         ),
         Vendor(
             name: "Warehouse",
-            logoName: "warehouse",
-            rating: 3
+            imageURL: "https://logowik.com/content/uploads/images/warehouse-stationery1845.jpg",
+            rating: 3,
+            category: .stationery
         ),
         Vendor(
             name: "Peppa Pig",
-            logoName: "peppaPig",
-            rating: 4
+            imageURL: "https://www.pngkit.com/png/detail/660-6604443_peppa-pig-logo-png.png",
+            rating: 4,
+            category: .specialForYou
         ),
         Vendor(
             name: "Jstor",
-            logoName: "jstor",
-            rating: 4
+            imageURL: "https://support.jstor.org/hc/article_attachments/360012911894/jstor-logo.png",
+            rating: 4,
+            category: .poems
         ),
         Vendor(
             name: "Peloton",
-            logoName: "peloton",
-            rating: 4
+            imageURL: "https://commons.wikimedia.org/wiki/Special:Redirect/file/Peloton_%28Unternehmen%29_logo.svg",
+            rating: 4,
+            category: .specialForYou
         ),
         Vendor(
             name: "Haymarket",
-            logoName: "haymarket",
-            rating: 4
+            imageURL: "https://commons.wikimedia.org/wiki/Special:Redirect/file/Haymarket_Media_Group_logo.svg",
+            rating: 4,
+            category: .books
         )
     ]
 }

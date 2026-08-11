@@ -10,13 +10,12 @@ import Foundation
 struct Author: Identifiable {
     let id = UUID()
     let name: String
-    let imageName: String
+    let imageURL: String
     let description: String
     let category: AuthorCategory
 }
 
 enum AuthorCategory: String, CaseIterable {
-    case all = "All"
     case poets = "Poets"
     case playwrights = "Playwrights"
     case novelists = "Novelists"
@@ -28,38 +27,43 @@ extension Author {
     static let samples: [Author] = [
         Author(
             name: "John Freeman",
-            imageName: "johnFreeman",
-            description: "American writer he was the editor of Granta",
+            imageURL: "https://commons.wikimedia.org/wiki/Special:Redirect/file/John%20Freeman%202262123.jpg",
+            description: "American writer and literary critic",
             category: .novelists
         ),
+        
         Author(
             name: "Adam Dalva",
-            imageName: "adamDalva",
-            description: "He is the senior fiction editor of Guernica Magazine",
+            imageURL: "https://commons.wikimedia.org/wiki/Special:Redirect/file/John%20Freeman%202262123.jpg",
+            description: "Senior fiction editor and writer",
             category: .novelists
         ),
+        
         Author(
             name: "Abraham Verghese",
-            imageName: "abrahamVerghese",
-            description: "He is the professor on Linda R. Meier",
+            imageURL: "https://commons.wikimedia.org/wiki/Special:Redirect/file/AbrahamVerghese%28c%29BarbiReed.jpg",
+            description: "Professor and author of Cutting for Stone",
             category: .novelists
         ),
+        
         Author(
             name: "Tess Gunty",
-            imageName: "tessGunty",
-            description: "Gunty was born and raised in South Bend, Indiana",
+            imageURL: "https://commons.wikimedia.org/wiki/Special:Redirect/file/AbrahamVerghese%28c%29BarbiReed.jpg",
+            description: "Award-winning novelist from South Bend, Indiana",
             category: .novelists
         ),
+        
         Author(
             name: "Ann Napolitano",
-            imageName: "annNapolitano",
-            description: "She is the author of the novels A Good Hard",
+            imageURL: "https://commons.wikimedia.org/wiki/Special:Redirect/file/Hernan%20Diaz%2C%20May%202022%20%28cropped%29.jpg",
+            description: "Author of Hello Beautiful and Dear Edward",
             category: .novelists
         ),
+        
         Author(
             name: "Hernan Diaz",
-            imageName: "hernanDiaz",
-            description: "Author and Pulitzer Prize winning novelist",
+            imageURL: "https://commons.wikimedia.org/wiki/Special:Redirect/file/Hernan%20Diaz%2C%20May%202022%20%28cropped%29.jpg",
+            description: "Pulitzer Prize-winning novelist",
             category: .novelists
         )
     ]
