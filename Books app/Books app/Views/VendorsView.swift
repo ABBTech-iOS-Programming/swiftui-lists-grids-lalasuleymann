@@ -9,7 +9,7 @@ import SwiftUI
 
 struct VendorsView: View {
     
-    let vendors = Vendor.samples
+    @Binding var vendors : [Vendor]
     
     let categories = ["All"] + VendorCategory.allCases.map { $0.rawValue }
     
@@ -80,16 +80,21 @@ struct VendorsView: View {
     }
     
     var body: some View {
-        ScrollView {
-            VStack(alignment: .leading, spacing: 20){
-                headerText
-                carouselCategories
-                vendorsGrid
+        NavigationStack{
+            ScrollView {
+                VStack(alignment: .leading, spacing: 20){
+                    headerText
+                    carouselCategories
+                    vendorsGrid
+                }
             }
+            .navigationTitle("Vendors")
+            .navigationBarTitleDisplayMode(.inline)
         }
     }
 }
 
 #Preview {
-    VendorsView()
+    @Previewable @State var vendors = Vendor.samples
+    VendorsView(vendors: $vendors)
 }

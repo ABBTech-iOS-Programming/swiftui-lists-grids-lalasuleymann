@@ -10,6 +10,7 @@ import SwiftUI
 struct SectionHeaderView: View {
     
     let title: String
+    let destination : AnyView?
     
     var body: some View {
         HStack(){
@@ -18,18 +19,19 @@ struct SectionHeaderView: View {
             
             Spacer()
             
-            Button {
-                print(title)
+            NavigationLink {
+                destination
             } label: {
                 Text("See all")
                     .font(.system(size: 14, weight: .bold))
                     .foregroundStyle(.mainText)
             }
         }
+        
         .padding(.horizontal)
     }
 }
 
 #Preview {
-    SectionHeaderView(title: "Top of Week")
+    SectionHeaderView(title: "Top of Week", destination: nil)
 }

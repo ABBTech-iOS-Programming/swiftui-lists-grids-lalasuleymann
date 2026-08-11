@@ -9,14 +9,14 @@ import SwiftUI
 
 struct HomeView: View {
     
-    let books = Book.samples
-    let vendors = Vendor.samples
-    let authors = Author.samples
+    @State private var books = Book.samples
+    @State private var vendors = Vendor.samples
+    @State private var authors = Author.samples
     
     var offersCarousel : some View {
         ScrollView(.horizontal, showsIndicators: false) {
             LazyHStack {
-                ForEach(books.filter( {$0.isSpecialOffer})){ book in
+                ForEach($books.filter( {$0.wrappedValue.isSpecialOffer})){ book in
                     OffersCardView(book: book)
                         .containerRelativeFrame(
                             .horizontal,
@@ -36,7 +36,7 @@ struct HomeView: View {
     var booksCarousel : some View {
         ScrollView(.horizontal, showsIndicators: false) {
             LazyHStack(spacing: 12){
-                ForEach(books){ book in
+                ForEach($books){ book in
                     BooksView(book: book)
                 }
             }
@@ -46,7 +46,7 @@ struct HomeView: View {
     
     var topOfWeek : some View {
         VStack(alignment: .leading, spacing: 16) {
-            SectionHeaderView(title: "Top of Week")
+            SectionHeaderView(title: "Top of Week", destination: nil)
             booksCarousel
         }
     }
@@ -66,7 +66,7 @@ struct HomeView: View {
     
     var bestVendors : some View {
         VStack(alignment: .leading, spacing: 16) {
-            SectionHeaderView(title: "Best Vendors")
+            SectionHeaderView(title: "Best Vendors", destination: AnyView(VendorsView(vendors: $vendors)))
             vendorsCarousel
         }
     }
@@ -76,7 +76,7 @@ struct HomeView: View {
     var authorsCarousel : some View {
         ScrollView(.horizontal, showsIndicators: false){
             LazyHStack(spacing: 8) {
-                ForEach(authors){ author in
+                ForEach($authors){ author in
                     AuthorsCardView(author: author, isMainView: false)
                 }
             }
@@ -86,7 +86,7 @@ struct HomeView: View {
     
     var authorsSection : some View {
         VStack(alignment: .leading, spacing: 16) {
-            SectionHeaderView(title: "Authors")
+            SectionHeaderView(title: "Authors", destination: AnyView(AuthorsView(authors: $authors)))
             authorsCarousel
         }
     }
@@ -94,13 +94,17 @@ struct HomeView: View {
     
     
     var body: some View {
-        ScrollView {
-            VStack(alignment: .leading, spacing: 32) {
-                offersCarousel
-                topOfWeek
-                bestVendors
-                authorsSection
+        NavigationStack {
+            ScrollView {
+                VStack(alignment: .leading, spacing: 32) {
+                    offersCarousel
+                    topOfWeek
+                    bestVendors
+                    authorsSection
+                }
             }
+            .navigationTitle("Home")
+            .navigationBarTitleDisplayMode(.inline)
         }
     }
 }

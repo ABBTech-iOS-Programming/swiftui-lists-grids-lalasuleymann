@@ -33,7 +33,7 @@ struct VendorsCardView: View {
     var rating: some View {
         HStack(spacing: 4) {
             ForEach(1...5, id: \.self) { star in
-                Image(systemName: star <= vendor.rating ? "star.fill" : "star.fill")
+                Image(systemName: star <= vendor.rating ? "star.fill" : "star")
                     .foregroundStyle(star <= vendor.rating ? .yellow : .black)
                     .frame(width: 16, height: 16)
             }

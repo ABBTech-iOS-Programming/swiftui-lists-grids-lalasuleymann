@@ -7,9 +7,10 @@
 
 import SwiftUI
 import SDWebImageSwiftUI
+
 struct BooksView: View {
     
-    let book : Book
+    @Binding var book : Book
     
     var image : some View {
         WebImage(url: URL(string: book.imageURL))
@@ -41,6 +42,6 @@ struct BooksView: View {
 }
 
 #Preview {
-    let book = Book.samples.first!
-    BooksView(book: book)
+    @Previewable @State var book = Book.samples.first!
+    BooksView(book: $book)
 }

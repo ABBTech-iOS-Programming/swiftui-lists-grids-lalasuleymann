@@ -10,7 +10,7 @@ import SDWebImageSwiftUI
 
 struct OffersCardView: View {
     
-    let book : Book
+    @Binding var book : Book
     
     var mainText : some View {
         VStack(alignment: .leading, spacing: 6) {
@@ -65,6 +65,6 @@ struct OffersCardView: View {
 }
 
 #Preview {
-    let book = Book.samples.first!
-    OffersCardView(book: book)
+    @Previewable @State var book = Book.samples.first!
+    OffersCardView(book: $book)
 }

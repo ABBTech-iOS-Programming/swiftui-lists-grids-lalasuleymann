@@ -8,20 +8,28 @@
 import SwiftUI
 
 struct AuthorsView: View {
-    
-    let authors = Author.samples
 
+    @Binding var authors : [Author]
     let categories = ["All"] + AuthorCategory.allCases.map { $0.rawValue }
     
     @State private var selectedCategory = "All"
+
+    @State var searchText : String = ""
     
-    var filteredAuthors: [Author] {
-        if selectedCategory == "All" {
-            return authors
-        }
-        
-        return authors.filter {
-            $0.category.rawValue == selectedCategory
+    var filteredAuthors: [Binding<Author>] {
+        $authors.filter { author in
+            let author = author.wrappedValue
+            
+            let matchesCategory =
+                selectedCategory == "All" ||
+                author.category.rawValue == selectedCategory
+            
+            let matchesSearch =
+                searchText.isEmpty ||
+                author.name.localizedCaseInsensitiveContains(searchText) ||
+                author.profession.localizedCaseInsensitiveContains(searchText)
+            
+            return matchesCategory && matchesSearch
         }
     }
     
@@ -73,16 +81,22 @@ struct AuthorsView: View {
     }
     
     var body: some View {
-        ScrollView {
-            VStack(alignment: .leading, spacing: 20){
-                headerText
-                carouselCategories
-                authorsGrid
+        NavigationStack{
+            ScrollView {
+                VStack(alignment: .leading, spacing: 20){
+                    headerText
+                    carouselCategories
+                    authorsGrid
+                }
             }
+            .navigationTitle("Authors")
+            .navigationBarTitleDisplayMode(.inline)
+            .searchable(text: $searchText)
         }
     }
 }
 
 #Preview {
-    AuthorsView()
+    @Previewable @State var authors = Author.samples
+    AuthorsView(authors: $authors)
 }

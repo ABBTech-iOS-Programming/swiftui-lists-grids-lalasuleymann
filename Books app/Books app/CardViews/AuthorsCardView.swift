@@ -10,7 +10,7 @@ import SDWebImageSwiftUI
 
 struct AuthorsCardView: View {
     
-    let author : Author
+    @Binding var author : Author
     let isMainView : Bool
     
     var image : some View {
@@ -29,9 +29,11 @@ struct AuthorsCardView: View {
             Text(author.name)
                 .font(.system(size: isMainView ? 18 : 16, weight: .semibold))
             
-            Text(author.profession)
-                .font(.system(size: 14, weight: .medium))
-                .foregroundStyle(.secondaryText)
+            if !isMainView {
+                Text(author.profession)
+                    .font(.system(size: 14, weight: .medium))
+                    .foregroundStyle(.secondaryText)
+            }
             
             if isMainView {
                 Text(author.description)
@@ -44,13 +46,13 @@ struct AuthorsCardView: View {
     
     var body: some View {
         ScrollView {
-            VStack(alignment: .leading, spacing: 12) {
-                image
-                info
-            }
-            
             if isMainView {
                 HStack(spacing: 12) {
+                    image
+                    info
+                }
+            }else {
+                VStack(alignment: .leading, spacing: 12) {
                     image
                     info
                 }
@@ -60,6 +62,6 @@ struct AuthorsCardView: View {
 }
 
 #Preview {
-    let author = Author.samples.first!
-    AuthorsCardView(author: author, isMainView: false)
+    @Previewable @State var author = Author.samples.first!
+    AuthorsCardView(author: $author, isMainView: false)
 }
