@@ -74,7 +74,12 @@ struct AuthorsView: View {
     var authorsGrid : some View {
         VStack(alignment: .leading,spacing: 32) {
             ForEach(filteredAuthors) { author in
-                AuthorsCardView(author: author, isMainView: true)
+                NavigationLink {
+                    AuthorDetailView(author: author)
+                } label: {
+                    AuthorsCardView(author: author, isMainView: true)
+                }
+                .buttonStyle(.plain)
             }
         }
         .padding(.horizontal, 16)
