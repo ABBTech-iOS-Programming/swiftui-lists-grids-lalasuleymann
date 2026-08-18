@@ -10,6 +10,7 @@ import SwiftUI
 struct AuthorsView: View {
 
     @Binding var authors : [Author]
+    
     let categories = ["All"] + AuthorCategory.allCases.map { $0.rawValue }
     
     @State private var selectedCategory = "All"
@@ -74,7 +75,12 @@ struct AuthorsView: View {
     var authorsGrid : some View {
         VStack(alignment: .leading,spacing: 32) {
             ForEach(filteredAuthors) { author in
-                AuthorsCardView(author: author, isMainView: true)
+                NavigationLink {
+                    AuthorDetailView(author: author)
+                } label: {
+                    AuthorsCardView(author: author, isMainView: true)
+                }
+                .buttonStyle(.plain)
             }
         }
         .padding(.horizontal, 16)

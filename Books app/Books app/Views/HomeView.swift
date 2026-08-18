@@ -12,6 +12,7 @@ struct HomeView: View {
     @State private var books = Book.samples
     @State private var vendors = Vendor.samples
     @State private var authors = Author.samples
+    @State private var selectedBook: Book?
     
     var offersCarousel : some View {
         ScrollView(.horizontal, showsIndicators: false) {
@@ -33,11 +34,17 @@ struct HomeView: View {
     }
     
     
-    var booksCarousel : some View {
+    var booksCarousel: some View {
         ScrollView(.horizontal, showsIndicators: false) {
-            LazyHStack(spacing: 12){
-                ForEach($books){ book in
-                    BooksView(book: book)
+            LazyHStack(spacing: 12) {
+                ForEach(books) { book in
+                    Button {
+                        selectedBook = book
+                    } label: {
+                        BooksView(book: .constant(book))
+                            .foregroundStyle(.black)
+                            .font(.system(size: 14))
+                    }
                 }
             }
         }
@@ -48,6 +55,11 @@ struct HomeView: View {
         VStack(alignment: .leading, spacing: 16) {
             SectionHeaderView(title: "Top of Week", destination: Text("No destination for this section"))
             booksCarousel
+        }
+        .sheet(item: $selectedBook) { selectedBook in
+            if let index = books.firstIndex(where: { $0.id == selectedBook.id }) {
+                BookDetailView(book: $books[index])
+            }
         }
     }
     

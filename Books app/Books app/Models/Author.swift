@@ -7,16 +7,17 @@
 
 import Foundation
 
-struct Author: Identifiable {
+struct Author: Identifiable, Hashable {
     let id = UUID()
     let name: String
     let imageName: String
     let description: String
     let profession: String
     let category: AuthorCategory
+    let rating: Double
 }
 
-enum AuthorCategory: String, CaseIterable {
+enum AuthorCategory: String, CaseIterable, Hashable {
     case poets = "Poets"
     case playwrights = "Playwrights"
     case novelists = "Novelists"
@@ -29,49 +30,55 @@ extension Author {
         Author(
             name: "John Freeman",
             imageName: "johnfreeman",
-            description: "American writer and literary critic",
+            description: "John was born and raised in South Bend, Indiana. She graduated from the University of Notre Dame with a Bachelor of Arts in English and from New York University.",
             profession: "Writer",
-            category: .journalists
+            category: .journalists,
+            rating: 4.0
         ),
         
         Author(
             name: "Adam Dalva",
             imageName: "adamdalva",
-            description: "Senior fiction editor and writer",
+            description: "Adam was born and raised in South Bend, Indiana. She graduated from the University of Notre Dame with a Bachelor of Arts in English and from New York University.",
             profession: "Writer",
-            category: .journalists
+            category: .journalists,
+            rating: 4.0
         ),
         
         Author(
             name: "Abraham Verghese",
             imageName: "abrahamverghese",
-            description: "Professor and author of Cutting for Stone",
+            description: "Abraham was born and raised in South Bend, Indiana. She graduated from the University of Notre Dame with a Bachelor of Arts in English and from New York University.",
             profession: "Writer",
-            category: .journalists
+            category: .journalists,
+            rating: 4.0
         ),
         
         Author(
             name: "Tess Gunty",
             imageName: "tessgunty",
-            description: "Award-winning novelist from South Bend, Indiana",
+            description: "Gunty was born and raised in South Bend, Indiana. She graduated from the University of Notre Dame with a Bachelor of Arts in English and from New York University.",
             profession: "Novelist",
-            category: .novelists
+            category: .novelists,
+            rating: 4.0
         ),
         
         Author(
             name: "Ann Napolitano",
             imageName: "annnapolitano",
-            description: "Author of Hello Beautiful and Dear Edward",
+            description: "Ann was born and raised in South Bend, Indiana. She graduated from the University of Notre Dame with a Bachelor of Arts in English and from New York University.",
             profession: "Novelist",
-            category: .novelists
+            category: .novelists,
+            rating: 4.0
         ),
         
         Author(
             name: "Hernan Diaz",
             imageName: "hernandiaz",
-            description: "Pulitzer Prize-winning novelist",
+            description: "Hernan was born and raised in South Bend, Indiana. She graduated from the University of Notre Dame with a Bachelor of Arts in English and from New York University.",
             profession: "Novelist",
-            category: .novelists
+            category: .novelists,
+            rating: 4.0
         )
     ]
 }
