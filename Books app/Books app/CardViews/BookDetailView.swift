@@ -10,7 +10,10 @@ import SwiftUI
 struct BookDetailView: View {
     
     @Binding var book : Book
+    
     @State private var quantity = 1
+    @State var isFavorite : Bool = false
+    @Environment(\.dismiss) private var dismiss
     
     var image : some View {
         Image(book.imageName)
@@ -24,9 +27,16 @@ struct BookDetailView: View {
         HStack{
             Text(book.title)
                 .font(.system(size: 20, weight: .semibold))
+            
             Spacer()
-            Image(systemName: "heart.fill")
-                .foregroundStyle(.mainText)
+            
+            Button {
+                isFavorite.toggle()
+            } label: {
+                Image(systemName: isFavorite ? "heart.fill" : "heart")
+                    .foregroundStyle(.mainText)
+            }
+            .buttonStyle(.plain)
         }
     }
     
@@ -77,40 +87,9 @@ struct BookDetailView: View {
     
     var stepper : some View {
         HStack(spacing: 16) {
-            HStack(spacing: 10) {
-                Button{
-                    if(quantity > 0){
-                        quantity -= 1
-                    }
-                } label: {
-                    Image(systemName: "minus")
-                        .padding()
-                        .background(Color(.systemGray4))
-                        .foregroundStyle(.mainText)
-                        .frame(width: 24, height: 24)
-                        .clipShape(Circle())
-                }
-                
-                Text("\(quantity)")
-                    .font(.system(size: 16, weight: .semibold))
-                    .frame(width: 20)
-                
-                Button{
-                    quantity += 1
-                } label: {
-                    Image(systemName: "plus")
-                        .padding()
-                        .background(.mainText)
-                        .foregroundStyle(.white)
-                        .frame(width: 24, height: 24)
-                        .clipShape(Circle())
-                }
-            }
-            .padding(10)
-            .background(Color(.systemGray6))
-            .clipShape(RoundedRectangle(cornerRadius: 8))
+            StepperView(quantity: $quantity)
             
-            Text(String("$\(book.price)"))
+            Text(String("$\(book.price * Double(quantity))"))
                 .font(.system(size: 16, weight: .regular))
                 .foregroundStyle(.mainText)
         }
@@ -120,7 +99,7 @@ struct BookDetailView: View {
     var buttons : some View {
         HStack{
             Button {
-                print("shjdbjs")
+                dismiss()
             } label: {
                 Text("Continue shopping")
                     .font(.system(size: 16, weight: .semibold))
@@ -134,7 +113,7 @@ struct BookDetailView: View {
             Spacer()
             
             Button {
-                print("shjdbjs")
+                print("View cart")
             } label: {
                 Text("View cart")
                     .font(.system(size: 16, weight: .semibold))

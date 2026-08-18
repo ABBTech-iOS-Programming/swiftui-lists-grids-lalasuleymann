@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Author: Identifiable {
+struct Author: Identifiable, Hashable {
     let id = UUID()
     let name: String
     let imageName: String
@@ -17,7 +17,7 @@ struct Author: Identifiable {
     let rating: Double
 }
 
-enum AuthorCategory: String, CaseIterable {
+enum AuthorCategory: String, CaseIterable, Hashable {
     case poets = "Poets"
     case playwrights = "Playwrights"
     case novelists = "Novelists"

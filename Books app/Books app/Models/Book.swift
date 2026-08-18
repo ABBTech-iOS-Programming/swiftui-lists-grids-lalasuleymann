@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Book: Identifiable {
+struct Book: Identifiable, Hashable {
     let id = UUID()
     let title: String
     let price: Double
@@ -37,7 +37,7 @@ extension Book {
         Book(
             title: "A Thousand Splendid Suns",
             price: 17.99,
-            imageName: "kiterunner",
+            imageName: "midnightlibrary",
             author: "Khaled Hosseini",
             vendor: Vendor.samples[3],
             description: "A powerful story about friendship, family and hope.",
@@ -48,7 +48,7 @@ extension Book {
         Book(
             title: "And the Mountains Echoed",
             price: 19.99,
-            imageName: "kiterunner",
+            imageName: "atomichabits",
             author: "Khaled Hosseini",
             vendor: Vendor.samples[3],
             description: "A moving story about family, sacrifice and the bonds between people.",
@@ -71,7 +71,7 @@ extension Book {
         Book(
             title: "Everything Is F*cked",
             price: 18.99,
-            imageName: "subtleartofngaf",
+            imageName: "dearedward",
             author: "Mark Manson",
             vendor: Vendor.samples[0],
             description: "A book about hope, happiness and the problems of modern life.",
@@ -173,7 +173,7 @@ extension Book {
         Book(
             title: "The Humans",
             price: 17.99,
-            imageName: "midnightlibrary",
+            imageName: "hellobeautiful",
             author: "Matt Haig",
             vendor: Vendor.samples[3],
             description: "A thoughtful and humorous story about what it means to be human.",

@@ -8,7 +8,10 @@
 import SwiftUI
 
 struct AuthorDetailView: View {
+    
     @Binding var author : Author
+    
+    @State private var selectedBook: Book?
     
     var authorBooks : [Book] {
         Book.samples.filter {
@@ -57,11 +60,9 @@ struct AuthorDetailView: View {
     }
     
     var products: some View {
-        
         VStack(alignment: .leading, spacing: 10) {
             Text("Products")
                 .font(.system(size: 16, weight: .semibold))
-            
             
             if(!authorBooks.isEmpty){
                 LazyVGrid(
@@ -72,28 +73,30 @@ struct AuthorDetailView: View {
                     spacing: 20
                 ) {
                     ForEach(authorBooks) { book in
-                        VStack(alignment: .leading, spacing: 6) {
-                            
-                            Image(book.imageName)
-                                .resizable()
-                                .scaledToFill()
-                                .frame(height: 160)
-                                .frame(maxWidth: .infinity)
-                                .clipShape(
-                                    RoundedRectangle(cornerRadius: 12)
-                                )
-                            
-                            VStack(alignment: .leading, spacing: 4) {
-                                Text(book.title)
-                                    .font(.system(size: 16, weight: .semibold))
-                                    .lineLimit(1)
+                        Button{
+                            selectedBook = book
+                        } label: {
+                            VStack(alignment: .leading, spacing: 6) {
+                                Image(book.imageName)
+                                    .resizable()
+                                    .scaledToFill()
+                                    .frame(height: 160)
+                                    .frame(maxWidth: .infinity)
+                                    .clipped()
+                                    .clipShape(RoundedRectangle(cornerRadius: 12))
                                 
-                                Text("$\(book.price, specifier: "%.2f")")
-                                    .font(.system(size: 14, weight: .semibold))
-                                    .foregroundStyle(.mainText)
+                                VStack(alignment: .leading, spacing: 4) {
+                                    Text(book.title)
+                                        .font(.system(size: 16, weight: .semibold))
+                                        .foregroundStyle(.black)
+                                        .lineLimit(1)
+                                    
+                                    Text("$\(book.price, specifier: "%.2f")")
+                                        .font(.system(size: 14, weight: .semibold))
+                                        .foregroundStyle(.mainText)
+                                }
                             }
-                        }
-                    }
+                        }                    }
                 }
             } else {
                 Text("No product yet")
@@ -103,7 +106,12 @@ struct AuthorDetailView: View {
                     .padding(.vertical, 80)
             }
         }
+        .sheet(item: $selectedBook) { book in
+            BookDetailView(book: .constant(book))
+        }
     }
+    
+    
     
     var body: some View {
         ScrollView {
@@ -121,6 +129,6 @@ struct AuthorDetailView: View {
 }
 
 #Preview {
-    @Previewable @State var author = Author.samples[2]
+    @Previewable @State var author = Author.samples[3]
     AuthorDetailView(author: $author)
 }

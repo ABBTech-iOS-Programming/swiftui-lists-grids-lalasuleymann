@@ -10,6 +10,7 @@ import SwiftUI
 struct AuthorsView: View {
 
     @Binding var authors : [Author]
+    
     let categories = ["All"] + AuthorCategory.allCases.map { $0.rawValue }
     
     @State private var selectedCategory = "All"
